@@ -1,0 +1,430 @@
+/* --------------------------------------------------
+   RESET E BASE
+-------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100vh;
+  min-height: 100vh;
+  font-size: 16px;
+  font-family: 'Open Sans', Arial, sans-serif;
+  color: #ffffff;
+  overflow-x: hidden;
+  position: relative;
+
+ background: linear-gradient(to bottom, rgba(91, 185, 141, 1), rgba(18, 89, 55, 1));
+ background-size: cover;
+  background-attachment: fixed;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 0;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.4), rgba(20, 20, 20, 0.6));
+  z-index: -1;
+}
+
+/* --------------------------------------------------
+   HEADER
+-------------------------------------------------- */
+header {
+  height: 80px;
+  display: flex;
+  flex-direction: row;       /* logo e bottone in fila */
+  align-items: center;
+  justify-content: center;   /* mantiene il logo centrato nella pagina */
+  padding: 1vh 0;
+  background: transparent;
+  position: relative;
+  z-index: 10;
+}
+
+/* logo */
+.logo-image {
+  max-width: 200px;
+  height: auto;
+  display: block;
+  margin-top: 5vh;
+}
+
+
+/* --------------------------------------------------
+   TITOLI E TESTI
+-------------------------------------------------- */
+h1 {
+  font-size: 1.6rem;
+  line-height: 1.2;
+  text-align: center;
+  margin: 0 0 1vh;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  font-weight: 600;
+  text-align: center;
+  color: rgb(162, 145, 103);
+  letter-spacing: 0.03em;
+  margin-bottom: 0;
+}
+
+h2, h3, h4 {
+  font-size: 1.2rem;
+  line-height: 2rem;
+  font-weight: 700;
+  text-align: left;
+  color: #ffffff;
+  margin-bottom: 1vh;
+}
+
+.placeholder {
+  font-size: 1rem;
+  line-height: 1.4rem;
+  font-weight: 400;
+  text-align: center;
+  color: #ffffff;
+  opacity: 0.9;
+  max-width: 90%;
+  max-height: 150px;
+  margin-bottom: 0;
+  padding: 1rem;
+  overflow-y: auto;
+  border-radius: 8px;
+}
+
+/* --------------------------------------------------
+   SLIDER
+-------------------------------------------------- */
+.slider {
+  position: absolute;
+  bottom: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.slides {
+  display: flex;
+  gap: 10px;
+}
+
+.slide {
+  border: 3px solid transparent;
+  border-radius: 50px;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.slide.selected {
+  border-color: #FFFFFF; /* evidenzia la slide selezionata */
+}
+
+.slide img {
+  width: 60px;  /* dimensione thumbnail */
+  height: 60px;
+  object-fit: cover;
+  display: block;
+  border-radius: 50px;
+}
+
+
+/* --------------------------------------------------
+   LINK BOX (pulsanti generici)
+-------------------------------------------------- */
+.link-box {
+  background-color: #282625;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  text-decoration: none;
+  padding: 0.8em 1.2em;
+  width: 90%;
+  max-width: 280px;
+  text-align: center;
+  border-radius: 0;
+  font-size: 0.9rem;
+  font-family: "Open Sans", Arial, sans-serif;
+  box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.2);
+  transition: color 0.3s ease, border-color 0.3s ease;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4em;
+  cursor: pointer;
+}
+
+.link-box .arrow {
+  font-size: 1.2em;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.link-box:hover {
+  color: #ffc900;
+  border-color: #ffc900;
+}
+
+.link-box:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* --------------------------------------------------
+   PULSANTE AR
+-------------------------------------------------- */
+
+
+#ar-button.link-box {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+
+  width: 160px;
+  height: 45px;
+  padding: 0.5em 1.2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: rgba(18, 89, 55, 0.6);
+  border-radius: 30px;
+  border-color: transparent;
+  box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.2);
+  gap: 0.15em;
+  cursor: pointer;
+  font-family: "Open Sans", Arial, sans-serif;
+  position: relative;
+}
+
+#ar-button .btn-title {
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #FFFFFFF;
+}
+
+#ar-button .btn-subtitle {
+  font-size: .7rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  color: #FFFFFFF;
+}
+
+#ar-button .arrow {
+  position: absolute;
+  top: 50%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+  color: #FFFFFFF;
+  transition: transform 0.3s ease;
+}
+
+#ar-button.link-box:hover {
+  background-color: #ffffff;
+  border-color: transparent;
+}
+
+#ar-button.link-box:hover .arrow {
+  transform: translate(-50%, -50%) translateX(4px);
+}
+
+/* --------------------------------------------------
+   PULSANTE ANIMATE
+-------------------------------------------------- */
+#animate-button.link-box {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 30px;
+  border-color: transparent;
+  box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.2);
+
+  font-family: "Open Sans", Arial, sans-serif;
+  color: #000000;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+#animate-button .btn-title {
+  font-family: 'OpenSans-Bold', 'Open Sans', Arial, sans-serif;
+  font-size: .9rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #000000;
+}
+
+#animate-button .btn-subtitle {
+  font-size: .9rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  color: #000000;
+}
+
+#animate-button.link-box:hover {
+  background-color: #ffffff;
+  border-color: transparent;
+}
+
+
+/* --------------------------------------------------
+   MODEL-VIEWER
+-------------------------------------------------- */
+model-viewer.model-layer {
+  width: 100%;
+  height: calc(100vh - 80px);
+  margin-top: 40px;
+  position: relative;
+  background: transparent;
+  z-index: 1;
+}
+
+.model-layer {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.model-layer.hidden {
+  opacity: 0;
+}
+
+model-viewer::part(progress-bar),
+model-viewer::part(default-progress-bar) {
+  display: none !important;
+}
+
+/* --------------------------------------------------
+   AR PROMPT E ERRORI
+-------------------------------------------------- */
+#ar-prompt {
+  position: absolute;
+  bottom: 15vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  z-index: 15;
+  animation: elongate 2s infinite ease-in-out alternate;
+}
+
+#ar-prompt img {
+  width: 10vw;
+  animation: circle 4s linear infinite;
+}
+
+model-viewer[ar-status="session-started"] > #ar-prompt {
+  display: block;
+}
+
+#ar-failure {
+  position: absolute;
+  bottom: 15vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+
+  padding: 2vh;
+  margin-top: 5vh;
+  border: none;
+  border-radius: 1vw;
+
+  background-color: red;
+  color: white;
+  z-index: 15;
+}
+
+/* --------------------------------------------------
+   FONT
+-------------------------------------------------- */
+@font-face {
+  font-family: 'OpenSans-Bold';
+  src: url('assets/OpenSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* --------------------------------------------------
+   ANIMAZIONI
+-------------------------------------------------- */
+
+@keyframes circle {
+  from {
+    transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg);
+  }
+}
+
+@keyframes elongate {
+  from { transform: translateX(100px); }
+  to   { transform: translateX(-100px); }
+}
+
+/* --------------------------------------------------
+   MEDIA QUERIES - DESKTOP
+-------------------------------------------------- */
+@media screen and (min-width: 1024px) {
+  html, body { font-size: 16px; }
+
+  .logo-image { max-width: 240px; }
+
+  h1         { font-size: 4rem; }
+  .subtitle  { font-size: 2.5rem; line-height: 3rem; }
+  .placeholder { font-size: 1.2rem; line-height: 1.8rem; }
+  .link-box  { font-size: 1.1rem; max-width: 240px; }
+
+  .slides { gap: 1vw; }
+
+  .slide {
+    width: 2vw;
+    height: 2vw;
+    border: 1px solid white;
+    background-color: grey;
+  }
+
+  .slide.selected {
+    border: 2px solid rgb(162, 145, 103);
+    transform: scale(1.1);
+  }
+
+  #ar-button.link-box {
+    max-width: 260px;
+    font-size: 1rem;
+    padding: 0.9em 1.5em;
+  }
+  
+  /* Nasconde il model-viewer su desktop */
+  model-viewer {
+    display: none !important;
+  }
+}

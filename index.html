@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FDS - Persistence AR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link rel="stylesheet" href="mainIND-2slidedef.css">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body>
+ 
+
+  <model-viewer 
+    tone-mapping="neutral"
+    id="sens"
+    poster="assets/poster.webp" 
+    camera-orbit="-0.00006239deg 0.0000573deg 1.079m" 
+    field-of-view="30deg"
+    src="assets/modello1.glb"
+    ios-src="assets/1.usdz"
+    shadow-intensity="1"
+    scale=".8 .8 .8"
+    ar  
+    ar-modes="webxr quick-look"
+    ar-scale="auto"
+    ar-placement="floor"
+    disable-pan
+    interaction-prompt="none"
+    camera-controls="false"
+    alt="Concrete"
+    class="model-layer">
+
+    <div id="ar-prompt">
+      <img src="assets/hand.png" alt="Hand gesture to interact with AR">
+    </div>
+
+    <button id="ar-failure" role="alert" aria-live="assertive">
+      AR is not tracking!
+    </button>
+
+    <button slot="ar-button" id="ar-button" class="link-box">
+      <span class="btn-title">See in AR</span>
+      <span class="arrow">›</span>
+    </button>
+
+   <div class="slider">
+  <div class="slides">
+    <button class="slide selected" onclick="switchSrc(this)" 
+            data-src="assets/modello1.glb" 
+            data-ios-src="assets/1.usdz">
+      <img src="assets/1.webp" alt="Modello 1">
+    </button>
+    <button class="slide" onclick="switchSrc(this)" 
+            data-src="assets/modello2.glb" 
+            data-ios-src="assets/2.usdz">
+      <img src="assets/2.webp" alt="Modello 2">
+    </button>
+    <button class="slide" onclick="switchSrc(this)" 
+            data-src="assets/modello3.glb" 
+            data-ios-src="assets/3.usdz">
+      <img src="assets/3.webp" alt="Modello 3">
+    </button>
+  </div>
+</div>
+
+
+  </model-viewer>
+  
+  <audio id="ar-audio" src="assets/1.mp3" preload="auto" loop></audio>
+
+<script>
+  const modelViewerAudio = document.getElementById('sens');
+  const audioEl = document.getElementById('ar-audio');
+
+  // gestore separato SOLO per l'audio
+  modelViewerAudio.addEventListener('ar-status', (event) => {
+    if (event.detail.status === 'session-started') {
+      // parte la sessione AR → avvia audio
+      audioEl.currentTime = 0;
+      audioEl.play().catch(err => {
+        console.log("Errore avvio audio:", err);
+      });
+    }
+
+    if (event.detail.status === 'not-presenting') {
+      // esci da AR → ferma audio
+      audioEl.pause();
+      audioEl.currentTime = 0;
+    }
+  });
+</script>
+<script>
+    function switchSrc(button) {
+  const modelViewer = document.querySelector('model-viewer');
+  const newSrc = button.getAttribute('data-src');
+  const newIosSrc = button.getAttribute('data-ios-src');
+
+  modelViewer.setAttribute('src', newSrc);
+  if (newIosSrc) {
+    modelViewer.setAttribute('ios-src', newIosSrc);
+  }
+
+  // aggiorna slider
+  document.querySelectorAll('.slide').forEach(btn => btn.classList.remove('selected'));
+  button.classList.add('selected');
+}
+  </script>
+</body>
+</html>
